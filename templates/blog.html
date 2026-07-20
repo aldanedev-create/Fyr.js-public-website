@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Blog — fyr.js{% endblock %}
+{% block content %}
+  <section class="page-hero shell compact-hero"><p class="eyebrow">Notes from Fyr</p><h1>Build notes, browser ideas, and <em>small wins.</em></h1><p class="lede">A lightweight journal for the thinking behind the framework and the web applications around it.</p></section>
+  <section class="shell post-grid section-tight">{% for slug, post in posts.items() %}<article class="post-card"><p class="eyebrow">{{ post.date }}</p><h2>{{ post.title }}</h2><p>{{ post.excerpt }}</p><a class="text-link" href="{{ url_for('blog_post', slug=slug) }}">Read note <span>→</span></a></article>{% endfor %}</section>
+{% endblock %}

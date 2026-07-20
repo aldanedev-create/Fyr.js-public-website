@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="fyr.js — a CDN-first JavaScript framework for reactive HTML.">
+    <meta name="theme-color" content="#080a12">
+    <title>{% block title %}fyr.js — reactive HTML without the ceremony{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('assets', filename='css/site.css') }}">
+  </head>
+  <body data-loader-variant="{{ loader_variant }}">
+    <div class="page-loader" aria-live="polite" aria-label="Loading Fyr website">
+      <canvas id="loader-canvas" aria-hidden="true"></canvas>
+      <div class="loader-copy"><span class="loader-mark">fyr<span>.js</span></span><small>Preparing the runtime</small></div>
+    </div>
+    <script>window.setTimeout(function () { document.querySelector('.page-loader')?.classList.add('is-done'); }, 5000);</script>
+
+    <header class="site-header" fyr-app="site">
+      <div class="shell nav-wrap">
+        <a class="brand" href="{{ url_for('home') }}" aria-label="fyr.js home">fyr<span>.js</span></a>
+        <button class="menu-button" type="button" fyr-click="toggleMenu()" aria-label="Toggle navigation" fyr-bind:aria-expanded="menuOpen">
+          <span></span><span></span>
+        </button>
+        <nav class="site-nav" fyr-class="{ 'is-open': menuOpen }" aria-label="Main navigation">
+          {% for label, endpoint in navigation %}
+            <a href="{{ url_for(endpoint) }}" class="{% if page in endpoint %}active{% endif %}">{{ label }}</a>
+          {% endfor %}
+          <a class="nav-contact" href="{{ url_for('contact') }}">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>
+          <a class="brand" href="{{ url_for('home') }}">fyr<span>.js</span></a>
+          <p>Reactive HTML, optional browser power, and a smaller distance between an idea and a working interface.</p>
+        </div>
+        <div>
+          <p class="eyebrow">Explore</p>
+          <a href="{{ url_for('docs_index') }}">Documentation</a>
+          <a href="{{ url_for('examples_index') }}">Examples</a>
+          <a href="{{ url_for('blog_index') }}">Blog</a>
+        </div>
+        <div>
+          <p class="eyebrow">Project</p>
+          <a href="{{ url_for('about') }}">About the creator</a>
+          <a href="{{ url_for('community') }}">Community</a>
+          <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+      </div>
+      <div class="shell copyright">Reserved © 2026 by Fyr.</div>
+    </footer>
+
+    <script type="module" src="{{ url_for('assets', filename='js/site.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Examples — fyr.js{% endblock %}
+{% block content %}
+  <section class="page-hero shell compact-hero">
+    <p class="eyebrow">Examples</p><h1>Learn by opening a <em>working idea.</em></h1><p class="lede">Each example starts with a focused use case and points to the Fyr concepts that make it work.</p>
+  </section>
+  <section class="shell example-grid section-tight">
+    {% for slug, example in examples.items() %}
+      <a class="example-card" href="{{ url_for('example_detail', slug=slug) }}"><span class="example-orb"></span><p class="eyebrow">{{ '%02d'|format(loop.index) }}</p><h2>{{ example.title }}</h2><p>{{ example.summary }}</p><div>{% for item in example.focus %}<span>{{ item }}</span>{% endfor %}</div><b>Explore →</b></a>
+    {% endfor %}
+  </section>
+{% endblock %}

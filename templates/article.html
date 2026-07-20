@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} — fyr.js documentation{% endblock %}
+{% block content %}
+  <section class="shell article-shell">
+    <aside class="article-nav"><a class="back-link" href="{{ url_for('docs_index') }}">← All documentation</a><p class="eyebrow">On this page</p>{% for section in article.sections %}<a href="#section-{{ loop.index }}">{{ section.heading }}</a>{% endfor %}</aside>
+    <article class="article-content">
+      <p class="eyebrow">Documentation</p><h1>{{ article.title }}</h1><p class="lede">{{ article.summary }}</p>
+      {% for section in article.sections %}
+        <section id="section-{{ loop.index }}" class="article-section"><h2>{{ section.heading }}</h2><p>{{ section.body }}</p><pre class="article-code"><code>{{ section.code }}</code></pre></section>
+      {% endfor %}
+      <div class="article-next"><span>Keep exploring</span><a href="{{ url_for('examples_index') }}">See framework examples <b>→</b></a></div>
+    </article>
+  </section>
+{% endblock %}

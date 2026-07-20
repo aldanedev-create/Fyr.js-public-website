@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Page not found — fyr.js{% endblock %}
+{% block content %}
+  <section class="shell not-found"><p class="eyebrow">404</p><h1>This route has not been <em>mounted.</em></h1><p class="lede">The page you requested does not exist on the Fyr public site.</p><a class="button button-primary" href="{{ url_for('home') }}">Return home <span>→</span></a></section>
+{% endblock %}

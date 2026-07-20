@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Documentation — fyr.js{% endblock %}
+{% block content %}
+  <section class="page-hero shell compact-hero">
+    <p class="eyebrow">Documentation</p>
+    <h1>Everything you need to make Fyr feel <em>familiar.</em></h1>
+    <p class="lede">Start with a browser import, then choose the core concepts and optional modules your application needs.</p>
+    <label class="search-box"><span>⌕</span><input id="docs-search" type="search" placeholder="Search documentation" autocomplete="off"><kbd>/</kbd></label>
+  </section>
+  <section class="shell docs-layout section-tight">
+    <aside class="docs-aside"><p class="eyebrow">Start here</p><a href="{{ url_for('docs_article', slug='getting-started') }}">Getting started</a><a href="{{ url_for('docs_article', slug='installation') }}">Installation</a><a href="{{ url_for('docs_article', slug='directives') }}">Directives</a><a href="{{ url_for('docs_article', slug='api-reference') }}">API reference</a></aside>
+    <div class="doc-card-grid" id="docs-grid">
+      {% for slug, article in docs.items() %}
+        <a class="doc-card" href="{{ url_for('docs_article', slug=slug) }}" data-search="{{ article.title }} {{ article.summary }}">
+          <span class="doc-number">{{ '%02d'|format(loop.index) }}</span><h2>{{ article.title }}</h2><p>{{ article.summary }}</p><span class="card-arrow">→</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ example.title }} example — fyr.js{% endblock %}
+{% block content %}
+  <section class="shell example-detail">
+    <a class="back-link" href="{{ url_for('examples_index') }}">← All examples</a>
+    <p class="eyebrow">Example</p><h1>{{ example.title }}</h1><p class="lede">{{ example.summary }}</p>
+    <div class="focus-list">{% for item in example.focus %}<span>{{ item }}</span>{% endfor %}</div>
+    <div class="example-stage">
+      {% if example.title == 'Counter' %}
+        <div class="embedded-counter" fyr-app="example-counter"><span>COUNT</span><strong fyr-text="count"></strong><p fyr-text="message"></p><div><button fyr-click="decrement()">−</button><button fyr-click="increment()">+</button><button fyr-click="reset()">Reset</button></div></div>
+      {% else %}
+        <div class="example-placeholder"><span class="pulse-dot"></span><p>{{ example.title }}</p><small>This guided example is represented in the site source and linked from the framework repository.</small></div>
+      {% endif %}
+    </div>
+    <pre class="article-code example-code"><code>{{ example.code }}</code></pre>
+  </section>
+{% endblock %}

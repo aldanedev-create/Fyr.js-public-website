@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} — fyr.js{% endblock %}
+{% block content %}
+  <article class="shell prose-post"><a class="back-link" href="{{ url_for('blog_index') }}">← All notes</a><p class="eyebrow">{{ post.date }}</p><h1>{{ post.title }}</h1><p class="lede">{{ post.excerpt }}</p>{% for paragraph in post.body %}<p>{{ paragraph }}</p>{% endfor %}</article>
+{% endblock %}
